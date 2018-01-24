@@ -1,0 +1,261 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>task1腾讯微博</title>
+		<style type="text/css">
+        body{
+            background-color:rgb(39, 40, 34);
+        }
+		/*设置主页面格式大小和居中*/
+		 .main{
+		 	width: 600px;
+		 	margin: auto;
+            background-color:rgb(255, 255,255);
+            padding:10px;
+            min-height:600px;/*我想设置页面大小的高度，让这个看起来不那么别扭，值应该设置多少*/
+		 }
+		 /*设置字体*/
+		 .bgfont {
+		 	font-family: font-family:"Times New Roman", Times, serif; /*字体类型的设置，一般设置什么类型？*/
+		    font-size: 24px;
+		}
+         /*设置横向列表*/
+         ul{
+            list-style-type:none;
+         }
+         ul.chatHead{
+         	margin: 0;
+         	padding: 0;
+         	float: left;
+         }
+         ul.chatHead li{
+         	display: inline-block;
+         }
+         /*设置头像悬停透明效果*/
+         ul.chatHead img{
+         	opacity: 0.4;
+         	filter:alpha(opacity=40);/*IE8及更早的版本*/
+         	width: 30px;
+         	height: 30px;
+         }
+         ul.chatHead img:hover{
+         	opacity: 1.0;
+         	filter:alpha(opacity=100);
+         }
+         /*设置输入框样式*/
+         input[type="text"]{
+         	width: 200px;
+         	height: 25px;
+         	margin-right: 10px;
+         	margin-bottom: 10px;
+         	float: left;
+         }
+         /*设置文本域样式*/
+         textarea{
+         	width: 100%; /*对于宽度的设置设置具体的数值还是百分数，其区别是什么？*/
+         	rows:4;
+         	display: block;
+            margin-bottom:10px;
+            font-size:14px;
+            resize:none; /*把右下角标志去掉*/
+         }
+
+         /*设置按钮样式*/
+         input[type="button"]{
+         	width: 112px; /*根据图片的大小设置其长和高*/
+         	height: 30px;
+         	background:url("img/btn.png") no-repeat;
+            float:right;
+         }
+         /*设置头条样式*/
+         .banner{
+         	height: 30px; /*内容的宽和高*/
+         	width:580px;
+         	background-color: rgb(227,235,237);
+            margin-top:10px;
+         	padding-top: 20px;
+         	padding-left: 20px;
+         	padding-bottom: 0px;
+
+         }
+         .banner div{
+         	height: 30px;
+         	width:80px;
+         	background-color: rgb(255,255,255);
+         	margin-bottom: 0px;
+            border-bottom:0px;
+            padding-left:10px;
+            padding-top:5px;
+         }
+         /*设置发表内容格式*/
+         .ualign{
+            margin-left:0px;/*头像边缘和上面导航栏对齐*/
+            padding-left:0px;
+         }
+         .content{
+            float: left;
+            margin-left:10px;
+                    }
+         .length{
+            max-width:400px;
+         }/*控制字数，字数一旦限制，其布局就会出现混乱，想哭~*/
+         .words{
+           margin-top:0px; /*输入字体顶端对齐*/
+           margin-bottom:12px;
+         }
+         .time{
+            font-size:14px;
+            color: rgb(169,169,169);
+         }
+         .uname{
+            color:rgb(70, 130, 180);
+            font-weight:bold;
+         }
+        hr{
+            clear:left;/*清除浮动，左侧不允许出现浮动的元素*/
+            width:100%;
+            border:1px,dashed,#696969;/*不知道怎么画长虚线*/
+        }
+
+		</style>
+	</head>
+	<body>
+		<!--全局-->
+		<div class="main">
+			<!--输入框-->
+			<div>
+				<h3>来，说说你在做什么，想什么</h3>
+				<!--输入用户名-->
+				<input type="text" id="user_name">
+				<!--选择用户头像-->
+				<ul id="user_head" class="chatHead" >
+					<li>
+						<img src="img/face.gif" alt="user1">
+					</li>
+					<li>
+						<img src="img/face1.gif" alt="user2">
+					</li>
+					<li>
+						<img src="img/face2.gif" alt="user3">
+					</li>
+					<li>
+						<img src="img/face3.gif" alt="user4">
+					</li>
+					<li>
+						<img src="img/face4.gif" alt="user5">
+					</li>
+					<li>
+						<img src="img/face5.gif" alt="user6">
+					</li>
+					<li>
+						<img src="img/face6.gif" alt="user7">
+					</li>
+					<li>
+						<img src="img/face7.gif" alt="user8">
+					</li>
+					<li>
+						<img src="img/face8.gif" alt="user9">
+					</li>
+				</ul>
+				</div>
+				<!--输入发表内容-->
+				<div>
+				    <textarea rows="4" id="user_content"></textarea>
+				    <span class="bgfont">还能输入140个字</span>
+				    <input type="button" id="addBtn" name="submit" value="">
+				</div>
+
+			<!--发表框-->
+			<div>
+				<div class="banner">
+					<div>大家在说</div>
+				</div>
+				<ul id="out_content" class="ualign">
+					<li>
+                        <!--头像-->
+						<div class="content"><img src="img/face.gif"></div>
+						<!--发表内容-->
+                        <div class="content length ">
+                          <p class="words"><span class="uname">王二：</span>&nbsp;今天好开心呀！</p>
+                          <p class="words time ">1月23日 9:24 &nbsp;&nbsp;&nbsp;<a href="">删除</a></p>
+                        </div>
+                        <hr>
+					</li>
+                    <li>
+                        <!--头像-->
+                        <div class="content">
+                            <img src="img/face.gif">
+                        </div>
+                        <!--发表内容-->
+                        <div class="content ">
+                          <p class="words"><span class="uname">王二：</span>&nbsp;今天好开心呀！</p>
+                          <p class="words time ">1月23日 9:24 &nbsp;&nbsp;&nbsp;<a href="">删除</a> </p>
+                        </div>
+                        <hr>
+                    </li>
+				</ul>
+			</div>
+		</div>
+	</body>
+    <script type="text/javascript" charset="utf-8" >
+        var btn=document.getElementById("addBtn")
+        btn.onclick=function(){
+            //获取用户名，用户发表内容，获取用户头像（这个功能暂时没有实现）
+            var u_name=document.getElementById("user_name").value;
+            var u_content=document.getElementById("user_content").value;
+            if (u_name == "")
+                {alert("请输入用户名！！！");}
+            else if (u_content == "")
+                {alert("发表内容不能为空！！");}
+               else{
+                //发表内容
+            //获取列表父节点
+            var ulNode = document.getElementById("out_content");
+            //创建子节点
+            var li = document.createElement("li");
+            //头像图片节点
+            var div_head = document.createElement("div");
+            div_head.setAttribute("class","content");
+            var img = document.createElement("img");
+            img.setAttribute("src", "img/face.gif");
+            div_head.appendChild(img);
+            li.appendChild(div_head);
+            //文本内容节点
+            var div_content = document.createElement("div");
+            div_content.setAttribute("class","content");
+            var p1 = document.createElement("p");
+            p1.setAttribute("class", "words");
+            p1.innerHTML="<span class='uname'>"+u_name+":</span>&nbsp;"+u_content;
+            div_content.appendChild(p1);
+            var p2 = document.createElement("p");
+            p2.setAttribute("class", "words time");
+            //获取当前系统时间,这里总是会有问题，我也是醉了。。。
+            var now = new Date();
+            var month = now.getMonth();
+            var day = now.getDate();
+            var hour = now.getHours();
+            var seconds = now.getSeconds();
+            p2.innerHTML= month+"月"+day+"日"+hour+"："+seconds;
+            div_content.appendChild(p2);
+            li.appendChild(div_content);
+            //分割线
+            var hr = document.createElement("hr");
+            li.appendChild(hr);
+            //插入成为第一个子节点
+            ulNode.insertBefore(li,ulNode.firstChild);
+            //清空文本框值
+            document.getElementById("user_name").value="";
+            document.getElementById("user_content").value="";
+
+               };
+            };
+
+
+
+        //删除内容
+        //并不清楚如何定位要删除的内容
+        //var ulNode = document.getElementById("out_cotent");
+        //ulNode.removeChild(node);
+    </script>
+</html>
