@@ -27,30 +27,34 @@
 		<p id="times" class="time">701天14小时47分32秒</p>
 	</div>
 	<script type="text/javascript">
-		var now = new Date();
-		var somedate = new Date("Jan 1. 2020");
-		console.log(now);
-		console.log(somedate);
-		if (now<somedate) 
-		{
-			var times = somedate - now;
-			console.log(times);
-			//获取秒数
-			var seconds = parseInt(times/1000%60,10);
-			//获取分钟数
-			var minutes = parseInt(times/1000/60%60,10);
-			//获取小时数
-			var hours = parseInt(times/1000/60/60%24,10);
-			//获取天数
-			var days =parseInt(times/1000/60/60/24,10);
+		var t = window.setTimeout("timekeeper()",1000);
+		function timekeeper() {
 
-			var leftime = document.getElementById("times");
-			leftime.innerHTML = days+"天"+hours+"小时"+minutes+"分"+seconds+"秒";
+			// body...
+			var now = new Date();
+			var somedate = new Date("Jan 1. 2020");
+			console.log(now);
+			console.log(somedate);
+			if (now<somedate) 
+			{
+				var times = somedate - now;
+				console.log(times);
+				//获取秒数
+				var seconds = parseInt(times/1000%60,10);
+				//获取分钟数
+				var minutes = parseInt(times/1000/60%60,10);
+				//获取小时数
+				var hours = parseInt(times/1000/60/60%24,10);
+				//获取天数
+				var days =parseInt(times/1000/60/60/24,10);
 
-
-
-		} 
-		else {alert("倒计时失败！");}
+				var leftime = document.getElementById("times");
+				leftime.innerHTML = days+"天"+hours+"小时"+minutes+"分"+seconds+"秒";
+				t = window.setTimeout("timekeeper()",1000);//为什么函数内也可以调用当前函数？
+			} 
+			else {alert("倒计时失败！");}
+			}
+		
 		/*获得当前年份
 		var now_year = now.getFullYear();
 		var new_year = somedate.getFullYear();
