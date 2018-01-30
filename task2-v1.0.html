@@ -24,11 +24,59 @@
 <body>
 	<div>
 		<p>距离2020年1月1日还有：</p>
-		<p class="time">701天14小时47分32秒</p>
+		<p id="times" class="time">701天14小时47分32秒</p>
 	</div>
 	<script type="text/javascript">
 		var now = new Date();
+		var somedate = new Date("Jan 1. 2020");
 		console.log(now);
+		console.log(somedate);
+		if (now<somedate) 
+		{
+			var times = somedate - now;
+			console.log(times);
+			//获取秒数
+			var seconds = parseInt(times/1000%60,10);
+			//获取分钟数
+			var minutes = parseInt(times/1000/60%60,10);
+			//获取小时数
+			var hours = parseInt(times/1000/60/60%24,10);
+			//获取天数
+			var days =parseInt(times/1000/60/60/24,10);
+
+			var leftime = document.getElementById("times");
+			leftime.innerHTML = days+"天"+hours+"小时"+minutes+"分"+seconds+"秒";
+
+
+
+		} 
+		else {alert("倒计时失败！");}
+		/*获得当前年份
+		var now_year = now.getFullYear();
+		var new_year = somedate.getFullYear();
+		//console.log(now_year);
+		//console.log(new_year);
+		//获得月份
+		var now_month = now.getMonth();
+		var new_month = somedate.getMonth();
+		//console.log(now_month);
+		//console.log(new_month);
+		//获得日期
+		var now_day = now.getDate();
+		var new_day = somedate.getDate();
+		//console.log(now_day);
+		//console.log(new_day);
+		//获得小时
+		var now_hour = now.getHours();
+		var new_hour = somedate.getHours();
+		//console.log(now_hour);
+		//console.log(new_hour);
+		//获得分钟
+		var now_minute = now.getMinutes();
+		var new_minute = somedate.getMinutes();
+		//console.log(now_minute);
+		//console.log(new_minute);
+		*/
 	</script>
 
 </body>
