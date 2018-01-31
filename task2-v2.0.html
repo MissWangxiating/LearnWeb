@@ -27,10 +27,13 @@
 		<p id="times" class="time">701天14小时47分32秒</p>
 	</div>
 	<script type="text/javascript">
-		var t = window.setTimeout("timekeeper()",1000);
+		timekeeper();
 		function timekeeper() {
 
-			// body...
+			/*倒计时涉及知识点:(1)setTimeout(函数名，间隔时间)和setTimeclear(setTimeout返回的id值)搭配使用，setTimeout()设定的时间到后就触发运行指定代码，setTimeclear()函数阻止setTimeout()运行；
+			（2）Date类型的变量可以直接运算，返回值单位是毫秒
+			（3）parseInt()解析字符串，返回一个整数，
+			*/
 			var now = new Date();
 			var somedate = new Date("Jan 1. 2020");
 			console.log(now);
@@ -50,37 +53,14 @@
 
 				var leftime = document.getElementById("times");
 				leftime.innerHTML = days+"天"+hours+"小时"+minutes+"分"+seconds+"秒";
-				t = window.setTimeout("timekeeper()",1000);//为什么函数内也可以调用当前函数？
+				time_new = window.setTimeout("timekeeper()",1000);//自动更新，页面有动态倒计时
 			} 
-			else {alert("倒计时失败！");}
+			else {
+				alert("倒计时失败！");
+				window.clearTimeout(time_new);
+		}
 			}
 		
-		/*获得当前年份
-		var now_year = now.getFullYear();
-		var new_year = somedate.getFullYear();
-		//console.log(now_year);
-		//console.log(new_year);
-		//获得月份
-		var now_month = now.getMonth();
-		var new_month = somedate.getMonth();
-		//console.log(now_month);
-		//console.log(new_month);
-		//获得日期
-		var now_day = now.getDate();
-		var new_day = somedate.getDate();
-		//console.log(now_day);
-		//console.log(new_day);
-		//获得小时
-		var now_hour = now.getHours();
-		var new_hour = somedate.getHours();
-		//console.log(now_hour);
-		//console.log(new_hour);
-		//获得分钟
-		var now_minute = now.getMinutes();
-		var new_minute = somedate.getMinutes();
-		//console.log(now_minute);
-		//console.log(new_minute);
-		*/
 	</script>
 
 </body>
