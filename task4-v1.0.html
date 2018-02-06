@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ajax练习</title>
+    <meta charset=utf-8>
+    <meta name=description content="ajax 练习">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel=stylesheet href="">
+    <style type="text/css" media="screen">
+
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <span>name</span><input type="text" name="u_name" id="u_name">
+        </div>
+        <div>
+            <span>code</span><input type="text" name="u_code" id="u_code">
+        </div>
+        <div>
+            <span>pinyin</span><input type="text" name="u_pinying" id="u_pinying">
+        </div>
+        <input id ="info" type="button" name="submit" value="提交">
+    </div>
+    <script type="text/javascript">
+        document.getElementById("info").onclick = function(){
+            var u_name = document.getElementById("u_name");
+            var u_code = document.getElementById("u_code");
+            var u_pinying = document.getElementById("u_pinying");
+
+            var xhr = new XMLHttpRequest();
+            var url = "ajax.html"; //这个url应该是传到后台的吧，感觉这样写不对
+            //添加参数
+            url = addURLParam(url,"showapi_appid","51699");
+            url = addURLParam(url,"showapi_sign","423c642aaf344e5b876ed34167f60c91");
+            url = addURLParam(url,"u_name",u_name);
+            url = addURLParam(url,"u_code",u_code);
+            url = addURLParam(url,"u_pinying",u_pinying);
+            //初始化请求
+            xhr.open("get",url,false);
+            xhr.send(null);
+            function addURLParam(url,name,value){
+                url += (url.indexOf("?") == -1 ? "?" : "&" );
+                url += encodeURIComponent(name)+"="+encodeURIComponent(value); //防止查询字符串的格式出现问题
+                return url;
+
+        }
+
+        }
+
+    </script>
+
+</body>
+</html>
