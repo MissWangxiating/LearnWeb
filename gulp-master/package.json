@@ -1,0 +1,19 @@
+{
+    "name": "gulp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "gulp browser-sync",
+        "start": "gulp browser-sync",
+        "build": "gulp",
+        "clean": "gulp clean"
+
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "browser-sync": "^2.23.6",
+        "gulp": "^3.9.1"
+    }
+}

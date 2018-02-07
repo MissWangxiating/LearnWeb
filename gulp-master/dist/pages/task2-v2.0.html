@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>实现倒计时功能</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		div{
+			width: 400px;
+			height: 200px;
+			margin:auto;
+			background-color: #2B2B2B;
+			color:#EEEEEE;
+			font-size: 16px;
+			font-family:Microsoft YaHei,sans-serif;
+			font-weight: bolder;
+			padding: 20px;
+		}
+		.time{
+			font-size:28px;
+		}
+
+	</style>
+</head>
+<body>
+	<div>
+		<p>距离2020年1月1日还有：</p>
+		<p id="times" class="time">701天14小时47分32秒</p>
+	</div>
+	<script type="text/javascript">
+		timekeeper();
+		function timekeeper() {
+
+			/*倒计时涉及知识点:(1)setTimeout(函数名，间隔时间)和setTimeclear(setTimeout返回的id值)搭配使用，setTimeout()设定的时间到后就触发运行指定代码，setTimeclear()函数阻止setTimeout()运行；
+			（2）Date类型的变量可以直接运算，返回值单位是毫秒
+			（3）parseInt()解析字符串，返回一个整数，
+			*/
+			var now = new Date();
+			var somedate = new Date("Jan 1. 2020");
+			console.log(now);
+			console.log(somedate);
+			if (now<somedate) 
+			{
+				var times = somedate - now;
+				console.log(times);
+				//获取秒数
+				var seconds = parseInt(times/1000%60,10);
+				//获取分钟数
+				var minutes = parseInt(times/1000/60%60,10);
+				//获取小时数
+				var hours = parseInt(times/1000/60/60%24,10);
+				//获取天数
+				var days =parseInt(times/1000/60/60/24,10);
+
+				var leftime = document.getElementById("times");
+				leftime.innerHTML = days+"天"+hours+"小时"+minutes+"分"+seconds+"秒";
+				time_new = window.setTimeout("timekeeper()",1000);//自动更新，页面有动态倒计时
+			} 
+			else {
+				alert("倒计时失败！");
+				window.clearTimeout(time_new);
+		}
+			}
+		
+	</script>
+
+</body>
+</html>
