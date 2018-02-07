@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>实现递归功能</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div>
+		<p>斐波那契数列：</p>
+	</div>
+
+<script type="text/javascript">
+	//斐波那契数列函数
+	function fibonacci(n){
+		if (n<3) {
+			return 1;
+		} else {
+			return fibonacci(n-1) + fibonacci(n-2);
+		}
+	}
+	f = fibonacci(7);
+	console.log(f);
+	for (var i = 1; i < 10; i++) {
+		div = document.getElementsByTagName("div")[0];
+		new_node=document.createElement("p");
+		new_node.innerHTML = fibonacci(i);
+		div.appendChild(new_node);
+	}
+
+	//sum函数
+	function sum(){
+		var number=0;
+		for (var i = 0; i < arguments.length; i++) {
+		      number = parseInt(arguments[i])+ parseInt(number);
+		}
+		return number;
+	}
+
+	console.log(sum(1,5,7));
+	console.log(sum(1,'asfguyd',7));
+	console.log(sum(1,2,3,4,5));
+	
+</script>
+
+</body>
+</html>
