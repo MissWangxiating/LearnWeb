@@ -15,14 +15,26 @@ function ajax_get (url,args) {
     //初始化请求
     xhr.open("get", url, true);
     xhr.send(null);
-    if (xhr.Status == 200) {
+    if (xhr.status >= 200 && xhr.status < 300) {
         console.log("响应成功！");
-       // success;
     }
-    else{
-        console.log("响应失败!");//为什么明明响应成功了，还是会输出响应失败？
-       // err;
+    /*
+    xhr.onreadystatechange = function () {
+        //判断其状态
+        console.log(xhr.readyState);
+       // console.log(xhr.status);
+        if (xhr.status >= 200 && xhr.status < 300) {
+            console.log("响应成功！");
+            console.log(xhr.responseText);
+            // success;
+        }
+        else {
+            console.log("响应失败!");//
+            // err;
+        }
+
     }
+    */
 
     function addURLParam(url, name, value) {
         url += (url.indexOf("?") == -1 ? "?" : "&");
@@ -47,16 +59,26 @@ function post_ajax(url,args) {
     param = param4 + "&" + param2 + "&" + param3 + "&" + param1 + "&"+ param5;
     xhr.open("post",url,true);
     //xhr.setRequestHeader("cache-control","no-cache");
-    xhr.setRequestHeader("content-Type","text/html;charset=utf-8")
+   // xhr.setRequestHeader("content-Type","text/html;charset=utf-8")
     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
     xhr.send(param);
+    xhr.onreadystatechange = function(){
+        //xhr.state 会取0、1、2、3、4 ，
+        if (xhr.status >=200 && xhr.status < 300) {
+            console.log("响应成功！");
+            console.log(xhr.responseText);
+        }
+        else {
+            console.log("响应失败！");
+        }
+    }
     function addParam(name,value){
         var a_param = encodeURIComponent(name) + "=" + encodeURIComponent(value);
         return a_param;   
     }
     
 }
-document.getElementById("info").onclick =function () {
+document.getElementById("info").onclick = function () {
     var u_name = document.getElementById("u_name").value;
     var u_code = document.getElementById("u_code").value;
     var u_pinying = document.getElementById("u_pinying").value;
