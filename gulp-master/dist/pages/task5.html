@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>实现日历功能</title>
+    <meta charset=utf-8>
+    <meta name=description content="日历功能">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <style type="text/css" media="screen">
+        table,th,td {
+            border:1px solid blue;
+        } 
+        table {
+            width: 600px;
+            min-height:100px;
+            line-height :50px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+    </style>
+    <javascript>
+        var now = new Date();
+    </javascript>
+</head>
+<body>
+    <!--下拉框选择年月-->
+    <div>
+        <!--选择年从2000年到2030年-->
+        <select name="year" >
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+        </select>
+        <span>年</span>
+        <select name="month" >
+            <option value="Jan">1</option>
+            <option value="Feb">2</option>
+            <option value="Mar">3</option>
+            <option value="Apr">4</option>
+            <option value="May">5</option>
+            <option value="Jun">6</option>
+            <option value="Jul">7</option>
+            <option value="Aug">8</option>
+            <option value="Sep">9</option>
+            <option value="Oct">10</option>
+            <option value="Nov">11</option>
+            <option value="Dec">12</option>
+        </select>
+        <span>月</span>
+    </div>
+    <!--日历列表框-->
+    <div>
+        <table>
+              <caption>2018年日历</caption>
+              <thead>
+                  <tr>
+                      <th>星期一</th>
+                      <th>星期二</th>
+                      <th>星期三</th>
+                      <th>星期四</th>
+                      <th>星期五</th>
+                      <th>星期六</th>
+                      <th>星期日</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>2月1日</td>
+                      <td>2月2日</td>
+                      <td>2月3日</td>
+                      <td>2月4日</td>
+                      <td>2月5日</td>
+                      <td>2月6日</td>
+                      <td>2月7日</td>
+                  </tr>
+                  <tr>
+                      <td>2月8日</td>
+                      <td>2月9日</td>
+                      <td>2月10日</td>
+                      <td>2月11日</td>
+                      <td>2月12日</td>
+                      <td>2月13日</td>
+                      <td>2月14日</td>
+                  </tr>
+                  <tr>
+                      <td>2月15日</td>
+                      <td>2月16日</td>
+                      <td>2月17日</td>
+                      <td>2月18日</td>
+                      <td>2月19日</td>
+                      <td>2月20日</td>
+                      <td>2月21日</td>
+                  </tr>
+                  <tr>
+                      <td>2月22日</td>
+                      <td>2月23日</td>
+                      <td>2月24日</td>
+                      <td>2月25日</td>
+                      <td>2月26日</td>
+                      <td>2月27日</td>
+                      <td>2月28日</td>
+                  </tr>
+                  <tr>
+                      <td>2月29日</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                  </tr>
+              </tbody>
+          </table>
+
+
+    </div>
+
+</body>
+</html>

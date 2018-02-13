@@ -15,10 +15,12 @@ function ajax_get (url,args) {
     //初始化请求
     xhr.open("get", url, true);
     xhr.send(null);
+    /*
     if (xhr.status >= 200 && xhr.status < 300) {
         console.log("响应成功！");
     }
-    /*
+    */
+
     xhr.onreadystatechange = function () {
         //判断其状态
         console.log(xhr.readyState);
@@ -34,7 +36,7 @@ function ajax_get (url,args) {
         }
 
     }
-    */
+
 
     function addURLParam(url, name, value) {
         url += (url.indexOf("?") == -1 ? "?" : "&");
