@@ -17,7 +17,14 @@
             border-collapse: collapse;
         }
         .now_day{
-            background-color:red;
+            background-color:#87CEFA;
+        }
+        .main{
+            margin-top:50px;
+            margin-left:400px;
+        }
+        .head_name{
+            font-size:24px;
         }
 
     </style>
@@ -25,47 +32,49 @@
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
-    <!--下拉框选择年月-->
-    <div id="s_date">
-        <!--选择年从2000年到2030年-->
-        <span>年</span>
-        <select id="month" name="month" >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-        <span>月</span>
-        <input type="button" id="refresh" value="获取日历">
-    </div>
-    <!--日历列表框-->
-    <div>
-        <table >
-              <caption id="table_name">2018年2月</caption>
-              <thead>
-                  <tr>
-                      <th>星期日</th>
-                      <th>星期一</th>
-                      <th>星期二</th>
-                      <th>星期三</th>
-                      <th>星期四</th>
-                      <th>星期五</th>
-                      <th>星期六</th>
-                  </tr>
-              </thead>
-              <tbody id="date_menu">
-              </tbody>
-          </table>
+    <div class="main">
+        <!--下拉框选择年月-->
+        <div id="s_date">
+            <!--选择年从2000年到2030年-->
+            <span>年</span>
+            <select id="month" name="month" >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <span>月</span>
+            <input type="button" id="refresh" value="获取日历">
+        </div>
+        <!--日历列表框-->
+        <div>
+            <table >
+                <caption id="table_name" class="head_name">2018年2月</caption>
+                <thead>
+                    <tr>
+                        <th>星期日</th>
+                        <th>星期一</th>
+                        <th>星期二</th>
+                        <th>星期三</th>
+                        <th>星期四</th>
+                        <th>星期五</th>
+                        <th>星期六</th>
+                    </tr>
+                </thead>
+                <tbody id="date_menu">
+                </tbody>
+            </table>
 
 
+        </div>
     </div>
     <script type="text/javascript">
         /******************************创建选择的年份列表*********************************/
@@ -125,7 +134,7 @@
                 // 设置表头
                 var t_name = document.getElementById("table_name");
                 //console.log(t_name.innerHTML);
-                t_name.innerHTML = y + "年" + (m+1) + "月";
+                t_name.innerHTML = y + "年" + (parseInt(m) + 1) + "月";
              
                 //创建月份数组
                 var days_per_month = new Array(31, 28 + isLeapYear(y), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
@@ -174,7 +183,7 @@
 
             $("select#month").change(function () {
                 console.log($(this).val());
-                new_month = $(this).val();
+                new_month = $(this).val() - 1;
             });
         $("#refresh").click(function () {
             createMenu(new_year,new_month,new_day);
