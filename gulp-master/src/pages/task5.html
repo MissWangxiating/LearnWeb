@@ -21,37 +21,35 @@
         }
 
     </style>
+    <!--引入jquery-->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
     <!--下拉框选择年月-->
-    <div>
+    <div id="s_date">
         <!--选择年从2000年到2030年-->
-        <select id="year" name="year" >
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-        </select>
         <span>年</span>
-        <select name="month" >
-            <option value="Jan">1</option>
-            <option value="Feb">2</option>
-            <option value="Mar">3</option>
-            <option value="Apr">4</option>
-            <option value="May">5</option>
-            <option value="Jun">6</option>
-            <option value="Jul">7</option>
-            <option value="Aug">8</option>
-            <option value="Sep">9</option>
-            <option value="Oct">10</option>
-            <option value="Nov">11</option>
-            <option value="Dec">12</option>
+        <select id="month" name="month" >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
         </select>
         <span>月</span>
+        <input type="button" id="refresh" value="获取日历">
     </div>
     <!--日历列表框-->
     <div>
-        <table>
-              <caption>2018年2月</caption>
+        <table >
+              <caption id="table_name">2018年2月</caption>
               <thead>
                   <tr>
                       <th>星期日</th>
@@ -70,86 +68,122 @@
 
     </div>
     <script type="text/javascript">
-        //创建选择的年份列表
-        //获取下拉列表父节点
-        var _year = document.getElementById("year");
+        /******************************创建选择的年份列表*********************************/
+        //获取下拉列表de父节点
+        var s_date = document.getElementById("s_date");
        // console.log(_year[0]);
         //想要用数组自动生成2000年至2030年的数，可是好像不行？
-        for (var i = 0; i < 30; i++) {
+        //创建下拉列表
+        var _select = document.createElement("select");
+        _select.id = "year";
+        for (var i = 0; i < 31; i++) {
             //创建子节点
             var _option = document.createElement("option");
-            _option.value = 2000+i;
+            _option.value = 2000 + i;
             _option.text = 2000 + i ;
-            _year.appendChild(_option);
+            _select.appendChild(_option);
                 };
+        s_date.insertBefore(_select,s_date.firstChild);
+        
+         //默认为当前日历
+            var now = new Date();
+            //console.log(now);
+            //获取年份
+            var y = now.getFullYear();
+            //获取月份
+            var m = now.getMonth();
+            //获取日
+            var d = now.getDate();
+            //console.log(y);
+            //console.log(m);
+            //console.log(d);
+            //console.log(weekday);
+            createMenu(y, m, d);
+        /*******************************创建日历表格，加载日历*********************/
+            //判断当前年份是否为闰年，能被4整除，但是不能被100整除，或者能被400整除，返回1，否则返回0
+            function isLeapYear(year) {
+                // body...
+                if (year % 100 == 0) {
+                    if (year % 4 == 0) {
+                        return 1;
+                    } else {
+                        return 0;
+                    };
 
-        var now = new Date();
-        console.log(now);
-        //获取年份
-        var y = now.getFullYear();
-        //获取月份
-        var m = now.getMonth();
-        //获取日
-        var d = now.getDate();
-        //获取星期
-        var weekday = now.getDay();
-        //console.log(y);
-        //console.log(m);
-        //console.log(d);
-        //console.log(weekday);
-        //判断当前年份是否为闰年，能被4整除，但是不能被100整除，或者能被400整除，返回1，否则返回0
-        function isLeapYear (year){
-            // body...
-            if (year%100==0) {
-                if (year%4==0) {
-                    return 1;
-                } else{
-                    return 0;
+                }
+                else {
+                    if (year % 4 == 0) {
+                        return 1;
+                    } else {
+                        return 0;
+                    };
                 };
-
-                    }
-            else{
-                if (year%4==0) {
-                    return 1;
-                } else{
-                    return 0;
+            }
+            //console.log(isLeapYear(y));
+            //创建日历
+            function createMenu(y, m, d) {
+                // 设置表头
+                var t_name = document.getElementById("table_name");
+                //console.log(t_name.innerHTML);
+                t_name.innerHTML = y + "年" + (m+1) + "月";
+             
+                //创建月份数组
+                var days_per_month = new Array(31, 28 + isLeapYear(y), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+                //确定表格行数
+                var firstday = new Date(y, m, 1);
+                var w_day = firstday.getDay();
+                var tr_nums = Math.ceil((w_day + days_per_month[m]) / 7); //math.ceil函数是向上取整的函数
+                //打印日历
+                //获取tbody父节点
+                var tbody = document.getElementById("date_menu");
+                tbody.innerHTML = "";
+                //console.log(tbody);
+                for (var i = 0; i < tr_nums; i++) {
+                    //创建tr子节点
+                    var tr = document.createElement("tr");
+                    for (var j = 0; j < 7; j++) {
+                        var idx = 7 * i + j;
+                        var date = idx - w_day + 1;
+                        if (date <= 0 || date > days_per_month[m]) {
+                            date = "&nbsp";
+                        }
+                        //document.write("<td>"+ date +"</td>");
+                        //创建td子节点
+                        var td = document.createElement("td");
+                        if (date == d) {
+                            td.setAttribute("class", "now_day");
+                        }
+                        td.innerHTML = date;
+                        tr.appendChild(td);
+                    };
+                    tbody.appendChild(tr);
                 };
-            };
-        }
-        console.log(isLeapYear(y));
-        //创建月份数组
-        var days_per_month = new Array(31,28 + isLeapYear(y),31,30,31,30,31,31,30,31,30,31);
-        //确定表格行数
-        var firstday = new Date(y,m,1);
-        var w_day = firstday.getDay();
-        var tr_nums = Math.ceil((w_day + days_per_month[m])/7); //math.ceil函数是向上取整的函数
-        //打印日历
-        //获取tbody父节点
-        var tbody = document.getElementById("date_menu");
-        tbody.innerHTML="";
-        //console.log(tbody);
-        for (var i = 0; i < tr_nums; i++) {
-            //创建tr子节点
-            var tr = document.createElement("tr");
-            for (var j = 0; j < 7; j++) {
-                 var idx = 7*i + j;
-                 var date = idx - w_day + 1;
-                 if (date <= 0||date > days_per_month[m]) {
-                    date = "&nbsp";
-                 }
-                 //document.write("<td>"+ date +"</td>");
-                 //创建td子节点
-                 var td =document.createElement("td");
-                 if(date==d){
-                    td.setAttribute("class","now_day");
-                 }
-                 td.innerHTML = date;
-                 tr.appendChild(td);
-                   };
-                   tbody.appendChild(tr);
-                 };
+            }
 
 
+        //获取选择年月的日历,下拉列表元素选择用原生js是需要采用onchange事件吗？获取不到select这个元素
+        // var options = document.getElementById("year");
+    
+            var new_year;
+            var new_month;
+            var new_day = 1;
+            $("select#year").change(function () {
+                console.log($(this).val());
+                new_year = $(this).val();
+            });
+
+            $("select#month").change(function () {
+                console.log($(this).val());
+                new_month = $(this).val();
+            });
+        $("#refresh").click(function () {
+            createMenu(new_year,new_month,new_day);
+            console.log("done!");
+        });
+        
+    
+        
+        
 
     </script>
 
