@@ -133,6 +133,9 @@
     //触发一级菜单，二级菜单跟着变化
     $("#province").change(function() {
         /* Act on the event */
+        //清除下拉列表
+        $("#area").empty();
+        $("<option></option>").text("----请选择----").appendTo($("#area"));
         var options = $("#province option:selected");
         $.each(json_data, function(index, json_data) {
                  /* iterate through array or object */

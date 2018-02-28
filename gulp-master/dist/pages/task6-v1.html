@@ -35,98 +35,124 @@
                 }
 
              });*/
-             var json_data = [{    "p_name": "吉林省",
-                                     "p_id": "jl",
-                                     "cities": [
-                                              {
-                                               "c_name": "长春",
-                                                  "c_id": "cc"
-                                                                 },
-                                        {
-                                                "c_name": "四平",
-                                                "c_id": "sp"
-                                            },
-                                            {
-                                                "c_name": "通化",
-                                                "c_id": "th"
-                                            },
-                                            {
-                                                "c_name": "松原",
-                                                "c_id": "sy"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "p_name": "辽宁省",
-                                        "p_id": "ln",
-                                        "cities": [
-                                            {
-                                                "c_name": "沈阳",
-                                                "c_id": "sy"
-                                            },
-                                            {
-                                                "c_name": "大连",
-                                                "c_id": "dl"
-                                            },
-                                            {
-                                                "c_name": "抚顺",
-                                                "c_id": "fs"
-                                            },
-                                            {
-                                                "c_name": "铁岭",
-                                                "c_id": "tl"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "p_name": "山东省",
-                                        "p_id": "sd",
-                                        "cities": [
-                                            {
-                                                "c_name": "济南",
-                                                "c_id": "jn"
-                                            },
-                                            {
-                                                "c_name": "青岛",
-                                                "c_id": "qd"
-                                            },
-                                            {
-                                                "c_name": "威海",
-                                                "c_id": "wh"
-                                            },
-                                            {
-                                                "c_name": "烟台",
-                                                "c_id": "yt"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "p_name": "上海市",
-                                        "p_id": "sh",
-                                        "cities": [
-                                            {
-                                                "c_name": "闵行区",
-                                                "c_id": "mh"
-                                            },
-                                            {
-                                                "c_name": "徐汇区",
-                                                "c_id": "xh"
-                                            },
-                                            {
-                                                "c_name": "黄浦区",
-                                                "c_id": "hp"
-                                            },
-                                            {
-                                                "c_name": "浦东新区",
-                                                "c_id": "pd"
-                                            }
-                                        ]
+             var json_data = [{
+    "p_name": "吉林省",
+    "p_id": "jl",
+    "cities": [
+        {
+            "c_name": "长春",
+            "c_id": "cc"
+        },
+        {
+            "c_name": "四平",
+            "c_id": "sp"
+        },
+        {
+            "c_name": "通化",
+            "c_id": "th"
+        },
+        {
+            "c_name": "松原",
+            "c_id": "sy"
+        }
+    ]
+},
+{
+    "p_name": "辽宁省",
+    "p_id": "ln",
+    "cities": [
+        {
+            "c_name": "沈阳",
+            "c_id": "sy"
+        },
+        {
+            "c_name": "大连",
+            "c_id": "dl"
+        },
+        {
+            "c_name": "抚顺",
+            "c_id": "fs"
+        },
+        {
+            "c_name": "铁岭",
+            "c_id": "tl"
+        }
+    ]
+},
+{
+    "p_name": "山东省",
+    "p_id": "sd",
+    "cities": [
+        {
+            "c_name": "济南",
+            "c_id": "jn"
+        },
+        {
+            "c_name": "青岛",
+            "c_id": "qd"
+        },
+        {
+            "c_name": "威海",
+            "c_id": "wh"
+        },
+        {
+            "c_name": "烟台",
+            "c_id": "yt"
+        }
+    ]
+},
+{
+    "p_name": "上海市",
+    "p_id": "sh",
+    "cities": [
+        {
+            "c_name": "闵行区",
+            "c_id": "mh"
+        },
+        {
+            "c_name": "徐汇区",
+            "c_id": "xh"
+        },
+        {
+            "c_name": "黄浦区",
+            "c_id": "hp"
+        },
+        {
+            "c_name": "浦东新区",
+            "c_id": "pd"
+        }
+    ]
 }];
-    var json_obj = $.parseJSON(json_data);//将json字符串转换为js对象
-    $.each(json_obj, function(index, json_obj) {
+    //var json_obj = $.parseJSON(json_data);//将json字符串转换为js对象
+    console.log(json_data[0].p_name);
+    $.each(json_data, function(index, json_data) {
          /* iterate through array or object */
-         var item = $("<option ></option>").val(json_obj.p_id).text(json_obj.p_name);
+         var item = $("<option ></option>").val(json_data.p_id).text(json_data.p_name);
         $("#province").append(item);
+    });
+    //触发一级菜单，二级菜单跟着变化
+    $("#province").change(function() {
+        /* Act on the event */
+        //清除下拉列表
+        $("#area").empty();
+        $("<option></option>").text("----请选择----").appendTo($("#area"));
+        var options = $("#province option:selected");
+        $.each(json_data, function(index, json_data) {
+                 /* iterate through array or object */
+            if (json_data.p_id == options.val()){
+                var c_items = json_data.cities;
+                var c_id = "c_id";
+                var c_name ="c_name";
+                $.each(c_items, function(i, c_items) {
+                     /* iterate through array or object */
+                     //console.log(c_items[c_id]);
+                    //var c_item = $("<option></option>").val(c_items[i].c_id).text(c_items[i].c_name);//这个会报错
+                    var c_item = $("<option></option>").val(c_items[c_id]).text(c_items[c_name]);
+                    $("#area").append(c_item);
+                    });
+                };
+            });
+
     });
 
 
@@ -140,17 +166,13 @@
         <!--一级菜单-->
         <select id="province" name="province" >
             <option value="">----请选择----</option>
-            <option value="js">江苏</option>
-            <option value="sh">上海</option>
-            <option value="ah">安徽</option>
+
         </select>
         <span>省</span>
         <!--二级菜单-->
         <select id="area" name="area" >
             <option value="">----请选择----</option>
-            <option value="nj">南京</option>
-            <option value="sz">苏州</option>
-            <option value="hz">扬州</option>
+
         </select>
         <span>市</span>
     </div>
