@@ -11,5 +11,5 @@ task4: 熟悉 ajax 请求， get 和 post 方式，熟悉 使用 gulp 调试
 #
 task5:实现日历功能，熟悉日期类型和数组类型的使用
 #
-task6:实现二级联动
+task6:实现下拉列表二级联动，尝试用jquery封装的ajax获取json数据，解析读取json数据并动态加载到下拉列表框
 
