@@ -17,7 +17,7 @@
 		 }
 		 /*设置字体*/
 		 .bgfont {
-		 	font-family: font-family:"Times New Roman", Times, serif; /*字体类型的设置，一般设置什么类型？*/
+		 	font-family: font-family,"Times New Roman", Times, serif; /*字体类型的设置，一般设置什么类型？*/
 		    font-size: 24px;
 		}
          /*设置横向列表*/
@@ -54,7 +54,7 @@
          /*设置文本域样式*/
          textarea{
          	width: 100%; /*对于宽度的设置设置具体的数值还是百分数，其区别是什么？*/
-         	rows:4;
+         	rows : 4;
          	display: block;
             margin-bottom:10px;
             font-size:14px;
@@ -65,7 +65,7 @@
          input[type="button"]{
          	width: 112px; /*根据图片的大小设置其长和高*/
          	height: 30px;
-         	background:url("../img/btn.png") no-repeat;
+         	background:url("../images/btn.png") no-repeat;
             float:right;
          }
          /*设置头条样式*/
@@ -146,15 +146,15 @@
 				<input type="text" id="user_name">
 				<!--选择用户头像-->
 				<ul id="user_head" class="chatHead" >
-					<li><img src="..\img\face.gif" alt="user1" class="active"></li> <!--li元素好像不宜回车，否则取子节点会出现问题-->
-					<li><img src="../img/face1.gif" alt="user2"></li>
-					<li><img src="../img/face2.gif" alt="user3"></li>
-					<li><img src="../img/face3.gif" alt="user4"></li>
-					<li><img src="../img/face4.gif" alt="user5"></li>
-					<li><img src="../img/face5.gif" alt="user6"></li>
-					<li><img src="../img/face6.gif" alt="user7"></li>
-					<li><img src="../img/face7.gif" alt="user8"></li>
-					<li><img src="../img/face8.gif" alt="user9"></li>
+					<li><img src="../images/face.gif" alt="user1" class="active"></li> <!--li元素好像不宜回车，否则取子节点会出现问题-->
+					<li><img src="../images/face1.gif" alt="user2"></li>
+					<li><img src="../images/face2.gif" alt="user3"></li>
+					<li><img src="../images/face3.gif" alt="user4"></li>
+					<li><img src="../images/face4.gif" alt="user5"></li>
+					<li><img src="../images/face5.gif" alt="user6"></li>
+					<li><img src="../images/face6.gif" alt="user7"></li>
+					<li><img src="../images/face7.gif" alt="user8"></li>
+					<li><img src="../images/face8.gif" alt="user9"></li>
 				</ul>
 				</div>
 				<!--输入发表内容-->
@@ -172,7 +172,7 @@
 				<ul id="out_content" class="ualign">
 					<li>
                         <!--头像-->
-						<div class="content"><img src="../img/face.gif"></div>
+						<div class="content"><img src="../images/face.gif"></div>
 						<!--发表内容-->
                         <div class="content length ">
                           <p class="words"><span class="uname">王二：</span>&nbsp;今天好开心呀！</p>
@@ -183,7 +183,7 @@
                     <li>
                         <!--头像-->
                         <div class="content">
-                            <img src="../img/face.gif">
+                            <img src="../images/face.gif">
                         </div>
                         <!--发表内容-->
                         <div class="content ">
@@ -201,7 +201,7 @@
         var btn=document.getElementById("addBtn");
         //获取用户头像,设置选中效果
         //设置默认头像
-        var head_src="../img/face.gif";
+        var head_src="../images/face.gif";
         var heads = document.getElementById("user_head");
         var head_list = heads.getElementsByTagName("img");//let 定义域
         for (let i = 0; i < head_list.length; i++) {

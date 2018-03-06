@@ -2,12 +2,13 @@
 var gulp = require('gulp'), //本地安装gulp所用到的地方
     less = require('gulp-less'),
     minify = require('gulp-minify'),
-    cssminify = require('gulp-minify-css'),
+    cssminify = require('gulp-minify-css'), //压缩css
     uglify = require('gulp-uglify'),
     connect = require('gulp-connect'), //livereload
     livereload = require('gulp-livereload'),
     runSequence = require('run-sequence'),
-    del = require('del'),
+    imageMin = require('gulp-imagemin'), //压缩图片
+    del = require('del'),       
     browserSync = require('browser-sync').create(), // 静态服务器
     reload = browserSync.reload;
 
@@ -37,6 +38,11 @@ gulp.task('testhtml', function() {
         .pipe(gulp.dest('dist/'))
         .pipe(connect.reload());
 });
+gulp.task('testimage',function(){
+    gulp.src('src/images/*.*')
+        .pipe(imageMin({progressive:true}))
+        .pipe(gulp.dest('dist/images'))
+});
 //定义livereload任务
 gulp.task('connect', function() {
     connect.server({
@@ -62,12 +68,13 @@ gulp.task('browser-sync', ['default'], () => {
     gulp.watch('src/css/*.css', ['testCss']);
     gulp.watch('src/pages/*.html', ['testhtml']);
     gulp.watch('src/*.html', ['testhtml']);
-    gulp.watch(['src/less/*.less', 'src/js/*.js', 'src/css/*.css', 'src/pages/*.html', 'src/*.html'], reload);
+    gulp.watch('src/images/*.*',['testimage'])
+    gulp.watch(['src/less/*.less', 'src/js/*.js', 'src/css/*.css', 'src/pages/*.html', 'src/*.html','src/images/*.*'], reload);
 });
 //定义默认任务
 gulp.task('default', ['clean'], cb =>
     runSequence(
-        ['testLess', 'testjs', 'testhtml', 'testCss'], // 第二步：打包 
+        ['testLess', 'testjs', 'testhtml', 'testCss','testimage'], // 第二步：打包 
         cb
     )
 );
